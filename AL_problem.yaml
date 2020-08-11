@@ -10,18 +10,18 @@ Materials:
     Thermal Conductivity X: 237
     Thermal Conductivity Y: 237
     Density: 2700
-    Cp: 1000
-    Initial Temperature: 333.
+    Specific Heat Capacity: 1000
     
-Boundary Conditions:
+Boundary Condition:
+    Initial Temperature: 293
+    Input Power Density: 2613200
     Room Temperature: 293
-    Power: 500000
-    convection coefficient: 25
-    
+    Convective Coefficient: 150
+    Ideal Temperature: 1200
 
 Simulation:
   Time Step: 0.01
-  Number Time Steps: 10001
+  Number Time Steps: 20001
   Number of Elements X: 100 
   Number of Elements Y: 100
 
