@@ -44,11 +44,12 @@ class PlotsTwoPlates():
                 print(m, self.fignum)
                 # plt.figure( figsize=(8, 6), dpi=280)
                 plt.gcf().set_size_inches(16, 8)
-                plt.gcf().set_dpi(80)
-                plt.pcolormesh(self.meshes.Y*self.meshes.dx, self.meshes.X*self.meshes.dy, self.T,vmin=float(self.deck.doc["Materials"]["Aluminium"]["Initial Temperature"])-50, vmax=600,cmap=self.deck.doc["Plot"]["Color Map"])
+                plt.gcf().set_dpi(80)                
+                plt.pcolormesh(self.meshes.Xposition, self.meshes.Yposition, self.T, vmin=float(self.deck.doc["Boundary Condition"]["Initial Temperature"]), vmax=float(self.deck.doc["Boundary Condition"]["Ideal Temperature"]),cmap=self.deck.doc["Plot"]["Color Map"])
                 plt.colorbar()
                 self.fig.suptitle('time: {:.2f}'.format( m*float(self.deck.doc["Simulation"]["Time Step"])), fontsize=16)
                 plt.savefig(self.deck.plot_dirTemp+self.deck.doc["Plot"]["figure temperature name"]+ str("%03d" %self.fignum) + '.jpg')
+
 
                 
                 
