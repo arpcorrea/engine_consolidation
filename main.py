@@ -9,12 +9,12 @@ deck = Deck( cwd + "/AL_problem.yaml" )
 
 geometry = Geometry(deck)
 
-meshes = Plate( deck,geometry )
+meshes = MeshOnePlate( deck,geometry )
 
-model_HT= HeatTransfer(deck,meshes)
+BC = BoundaryCondition(deck, geometry, meshes)
 
-# model_IC = IntimateContact(meshes,deck)
+model_HT= HeatTransfer(deck,meshes, BC)
 
-plots=PlotsTwoPlates(deck,meshes,meshes.T)
+plots=PlotsTwoPlates(deck,meshes,BC)
 
-solves = SolvesTwoPlates( deck,model_HT,meshes,plots)
+solves = SolvesOnePlates( deck, meshes, BC,model_HT,plots)
