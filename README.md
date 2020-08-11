@@ -3,11 +3,11 @@
 
 A plate with dimensions X and Y are defined by the user in ["Geometry"]["Length X"]["Length Y"]
 
-The plate, made of orthotropic, material is heated on the left boundary with a constant heat Q, defined by the user in ["Boundary Conditions"]["Power"]. We assumed that this material is aluminium"
+The plate, made of orthotropic, material is heated on the left boundary with a constant heat Q, defined by the user in ["Boundary Condition"]["Input Power Density"]. We assumed that this material is aluminium"
 
-The plate's initial temperature is defined by the user in ["Materials"]["Aluminium"]["Initial Temperature"]. Other material properties are also defined in ["Materials"]["Aluminium"].
+The plate's initial temperature is defined by the user in ["Boundary Condition"]["Initial Temperature"]. The material properties are defined in ["Materials"]["Aluminium"].
 
-The plate is inside a room, with a constant temperature is set by the user in ["Boundary Conditions"]["Room Temperature"].
+The plate is inside a room, with a constant temperature is set by the user in ["Boundary Condition"]["Room Temperature"]. The convection coefficient is defined in ["Boundary Condition"]["Convective Coefficient"]
 
 The user also define the number of elements in X and Y in ["simulation"]["Number of Elements X"] and ["simulation"]["Number of Elements Y"] respectivelly.
 
@@ -30,18 +30,18 @@ Materials:
     Thermal Conductivity X: 237
     Thermal Conductivity Y: 237
     Density: 2700
-    Cp: 1000
-    Initial Temperature: 333.
+    Specific Heat Capacity: 1000
     
-Boundary Conditions:
+Boundary Condition:
+    Initial Temperature: 293
+    Input Power Density: 2613200
     Room Temperature: 293
-    Power: 500000
-    convection coefficient: 25
-    
+    Convective Coefficient: 150
+    Ideal Temperature: 1200
 
 Simulation:
   Time Step: 0.01
-  Number Time Steps: 10001
+  Number Time Steps: 20001
   Number of Elements X: 100 
   Number of Elements Y: 100
 
@@ -54,7 +54,6 @@ Plot:
   
 Animation:
     name: temperature
-
 ```
 
 
@@ -64,9 +63,11 @@ Animation:
 ### Geomtry
 A class named "Geometry" is difined only to store the X and Y dimensions of the problem.
 ### Mesh
-A class named "Plate" is defined to create the mesh and assign Initial Temperature, Thermal Diffusivity in X and Thermal Diffusivity in Y in each element.
+A class named "MeshOnePlate" is defined to create the mesh.
+### BC
+a class named "Boundary Condition" assigns Initial Temperature, Thermal Diffusivity in X and Thermal Diffusivity in Y, Cp, Density in each element. 
 ### Model
-A class named "Heat Transfer" solves the heat transfer problem by central differences.
+A class named "Heat Transfer" is the thermal engine. It solves convection on the edges and the heat transfer problem by central differences within the plate.
 ### Plot and Animation
 A class named "PlotsTwoPlates" is defined to generate figures of the thermal history in spaced intervals. In the end, a .GIF is created from those figures.
 ### Solver
