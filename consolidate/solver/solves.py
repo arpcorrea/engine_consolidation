@@ -21,7 +21,7 @@ class SolvesOnePlates:
 # -------------- CALCULATE TEMPERATURE FOR EACH STEP INCREMENT----------             
             # self.A=self.model_HT.convection(self.meshes.T0, self.meshes.T, self.meshes.DiffTotalX, self.meshes.DiffTotalY)
             self.BC.T0, self.BC.T = self.model_HT.do_convection(self.BC.T0, self.BC.T, self.BC.Dx, self.BC.Dy)            
-            self.BC.T0, self.BC.T = self.model_HT.do_timestep(self.BC.T0, self.BC.T, self.BC.Dx, self.BC.Dy, self.BC.Q)
+            self.BC.T0, self.BC.T = self.model_HT.do_timestep(self.BC.T0, self.BC.T, self.BC.Dx, self.BC.Dy)
             
             # -------------- FORCE TEMPERATURE AT THE INTERFACE: ISOTHERMAL CONDITION----------             
 # -------------- UPDATE T0----------             
