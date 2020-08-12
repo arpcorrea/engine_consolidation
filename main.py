@@ -13,7 +13,7 @@ meshes = MeshOnePlate( deck,geometry )
 
 BC = BoundaryCondition(deck, geometry, meshes)
 
-model_HT= HeatTransfer(deck,meshes, BC)
+model_HT= HeatTransfer(geometry,deck,meshes, BC)
 
 plots=PlotsTwoPlates(deck,meshes,BC)
 
