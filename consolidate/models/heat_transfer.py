@@ -30,7 +30,6 @@ class HeatTransfer:
         
         
         valueX=np.zeros(np.shape(self.BC.T))
-
         valueX[:,0 ]  = -Q[:,0]/ self.BC.Kx[:,0]
         valueX[:,-1]  = -Q[:,-1]/self.BC.Kx[:,-1]        
         valueX[0,0]   = -Q[0,0]/self.BC.Kx[0,0]     
@@ -48,7 +47,7 @@ class HeatTransfer:
         valueY[-1,0]  = -Q[-1,0]/self.BC.Ky[-1,0]
         valueY[0,-1]  = -Q[0,-1]/self.BC.Ky[0,-1]
         valueY[-1,-1] = -Q[-1,-1]/self.BC.Ky[-1,-1]       
-        self.valueX=valueX        
+        self.valueY=valueY    
         
         
         
