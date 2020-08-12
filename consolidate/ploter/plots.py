@@ -11,13 +11,12 @@ import glob
 
 class PlotsTwoPlates():
     
-    def __init__(self, deck,meshes,T,Dic):
+    def __init__(self, deck,meshes,T):
         self.deck = deck
         self.nsteps =  int(self.deck.doc["Simulation"]["Number Time Steps"])
         self.nsetepinterval =int(self.deck.doc["Plot"]["plot interval"])
         self.meshes=meshes
         self.T = T
-        self.Dic=Dic
         self.set_plots()
 
 
@@ -45,24 +44,14 @@ class PlotsTwoPlates():
                 print(m, self.fignum)
                 # plt.figure( figsize=(8, 6), dpi=280)
                 plt.gcf().set_size_inches(16, 8)
-                plt.gcf().set_dpi(80)
-                
-                plt.pcolormesh(self.meshes.ElementsWidth*self.meshes.dx, self.meshes.distThickness, self.T,vmin=float(self.deck.doc["Materials"]["Material1"]["Initial Temperature"]), vmax=float(self.deck.doc["Processing Parameters"]["Temperature"]),cmap=self.deck.doc["Plot"]["Color Map"])
+                plt.gcf().set_dpi(80)                
+                plt.pcolormesh(self.meshes.Xposition, self.meshes.Yposition, self.T, vmin=0, vmax=293,cmap=self.deck.doc["Plot"]["Color Map"])
                 plt.colorbar()
                 self.fig.suptitle('time: {:.2f}'.format( m*float(self.deck.doc["Simulation"]["Time Step"])), fontsize=16)
                 plt.savefig(self.deck.plot_dirTemp+self.deck.doc["Plot"]["figure temperature name"]+ str("%03d" %self.fignum) + '.jpg')
 
-                plt.clf()
-                print(m, self.fignum)
-                # plt.figure( figsize=(8, 6), dpi=280)
-                plt.gcf().set_size_inches(16, 8)
-                plt.gcf().set_dpi(80)
-                plt.pcolormesh(self.meshes.ElementsWidth, self.meshes.distThickness, self.Dic,vmin=self.meshes.dic, vmax=1,cmap=self.deck.doc["Plot"]["Color Map"])
-                plt.colorbar()
-                self.fig.suptitle('time: {:.2f}'.format( m*float(self.deck.doc["Simulation"]["Time Step"])), fontsize=16)
-                plt.savefig(self.deck.plot_dirDic+self.deck.doc["Plot"]["figure dic name"]+ str("%03d" %self.fignum) + '.jpg')
 
-# -------------- END PLOTTING----------                        
+                
                 
                 
                 
@@ -87,21 +76,7 @@ class PlotsTwoPlates():
                         save_all=True,
                         duration=400, loop=0)       
     
-    
-        frames = []
-        # imgs = glob.glob("./output/*.jpg")
-        imgs = glob.glob(self.deck.plot_dirDic + '*.jpg')
-        for i in imgs:
-            new_frame = Image.open(i)
-            frames.append(new_frame)
-            print(i)
-            
-        direction=(self.deck.plot_dirDic+self.deck.doc["Animation"]["name"]+'.gif')
-        frames[0].save(direction, format='GIF',
-                        append_images=frames[1:],
-                        save_all=True,
-                        duration=400, loop=0)      
-        
+
         
         
         
