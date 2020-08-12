@@ -74,7 +74,7 @@ class BoundaryCondition():
     def set_heat_input_density(self):       
         self.q=float(self.deck.doc["Boundary Condition"]["Input Power Density"])
         Q =    np.zeros((np.shape(self.T)))
-        Q[0:,0] = self.q
+        # Q[0:,0] = self.q
         self.Q=Q.copy()        
         
         
