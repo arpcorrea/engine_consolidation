@@ -18,7 +18,6 @@ class BoundaryCondition():
         self.set_density()
         self.set_specific_heat()
         self.set_diffusivity()
-        self.set_heat_input_density()
         
     def set_temperatures(self):    
         
@@ -70,12 +69,7 @@ class BoundaryCondition():
 
     
 
-
-    def set_heat_input_density(self):       
-        self.q=float(self.deck.doc["Boundary Condition"]["Input Power Density"])
-        Q =    np.zeros((np.shape(self.T)))
-        # Q[0:,0] = self.q
-        self.Q=Q.copy()        
+     
         
         
         
