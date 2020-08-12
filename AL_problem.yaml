@@ -15,8 +15,8 @@ Materials:
 Boundary Condition:
     Initial Temperature: 293
     Input Power Density: 2613200
-    Room Temperature: 293
-    Convective Coefficient: 150
+    Room Temperature: 0
+    Convective Coefficient: 1050
     Ideal Temperature: 1200
 
 Simulation:
